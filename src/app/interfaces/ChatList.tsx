@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 const mockChats = [
@@ -7,14 +9,17 @@ const mockChats = [
   { id: 4, name: "David Brown", avatar: "/avatar4.png", lastMessage: "Thanks for your help!", timestamp: "Tue", unread: 0 },
 ];
 
-const ChatList = () => {
+const ChatList = ({ onSelectChat, selectedChatId }) => {
   return (
     <div className="bg-base-200 w-80 h-screen p-4">
       <h2 className="text-2xl font-bold mb-4">Chats</h2>
       <ul className="menu bg-base-100 w-full rounded-box">
         {mockChats.map((chat) => (
           <li key={chat.id}>
-            <a className="flex items-center p-3 hover:bg-base-200 transition-colors duration-200">
+            <a 
+              className={`flex items-center p-3 hover:bg-base-200 transition-colors duration-200 ${selectedChatId === chat.id ? 'bg-base-300' : ''}`}
+              onClick={() => onSelectChat(chat.id)}
+            >
               <div className="avatar online mr-4">
                 <div className="w-12 rounded-full">
                   <img src={chat.avatar} alt={chat.name} />

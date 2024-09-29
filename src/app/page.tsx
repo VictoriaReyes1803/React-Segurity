@@ -1,13 +1,8 @@
-import React from 'react';
-import ChatList from './interfaces/ChatList';
-import MessageThread from './interfaces/MessageThread';
+import ChatInterface from "./interfaces/ChatInterface";
 function App() {
   return (
-    <div className="container mx-auto">
-      <div className="flex">
-        <ChatList />
-        <MessageThread messages={undefined} />
-      </div>
+    <div className="app">
+      <ChatInterface />
     </div>
   );
 }
