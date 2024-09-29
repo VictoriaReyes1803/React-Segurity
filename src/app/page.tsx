@@ -6,7 +6,7 @@ function App() {
     <div className="container mx-auto">
       <div className="flex">
         <ChatList />
-        <MessageThread />
+        <MessageThread messages={undefined} />
       </div>
     </div>
   );
