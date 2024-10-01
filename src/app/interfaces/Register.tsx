@@ -7,11 +7,36 @@ const RegisterPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const register = (event: React.FormEvent) => {
+  const register = async (event: React.FormEvent) => {
     event.preventDefault();
     console.log("Nombre:", name)
     console.log("Email:", email);
     console.log("Password:", password);
+
+    const data = {
+      username: name,
+      email: email,
+      password: password
+    };
+
+    try {
+      const response = await fetch('http://127.0.0.1:5000/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Registro exitoso:', result);
+      } else {
+        console.error('Error al registrarse', response.statusText);
+      }
+    } catch (error) {
+      console.error('ERROR', error);
+    }
   };
 
   return (
